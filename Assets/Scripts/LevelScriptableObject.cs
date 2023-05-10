@@ -19,7 +19,7 @@ public class LevelScriptableObject : ScriptableObject {
     public MinMax itemsToSpawn;
     public MinMax reactionTime;
     public int switchButtonsChance;
-    public ShapeType shapesType;
+    public int spawnArrowsChance = 10;
 
 
     // levelNumber    
@@ -28,6 +28,8 @@ public class LevelScriptableObject : ScriptableObject {
     [HideInInspector] public float probabilityToDifferentShape = 0.5f;
     
     // shapeType
+    [HideInInspector] public ShapeType shapesType;
+    // shape prefab
     [HideInInspector] public GameObject spawningPrefab;
     // reactionTime
     [HideInInspector] public int minReactionTime;
@@ -45,7 +47,7 @@ public class LevelScriptableObject : ScriptableObject {
     [HideInInspector] public bool semanticImages;
 
 
-    void FindPrefabByShape(){
+    public void SetSpawningPrefab(){
         string path = "Prefabs/Shapes/";
         switch (shapesType)
         {
@@ -74,7 +76,7 @@ public class LevelScriptableObject : ScriptableObject {
         semanticImages = imagesFlags.isSemantic;
     
         // shapesType;  -   find prefab from enum
-        FindPrefabByShape();
+        SetSpawningPrefab();
 
         // spreadFlags
         spawnColumn = spreadFlags.isColumn;

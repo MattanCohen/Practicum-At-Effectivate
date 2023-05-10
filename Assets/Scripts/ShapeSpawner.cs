@@ -210,50 +210,50 @@ public class ShapeSpawner : MonoBehaviour
         }
     }
 
-    Sprite [] GetSprites(ImagesType imagesType){
-        return FindObjectOfType<Imager>().GetTwoRandomSprites(imagesType);
+    // Sprite [] GetSprites(ImagesType imagesType){
+    //     // return FindObjectOfType<Imager>().GetTwoRandomSprites(imagesType);
 
 
-        List<Sprite> sprites = new List<Sprite>();
+    //     List<Sprite> sprites = new List<Sprite>();
 
-        ImageSelector imageSelector = FindObjectOfType<ImageSelector>();
+    //     ImageSelector imageSelector = FindObjectOfType<ImageSelector>();
 
-        switch (imagesType)
-        {
+    //     switch (imagesType)
+    //     {
             
-            case ImagesType.Geometric:
+    //         case ImagesType.Geometric:
                 
-                string semantic1 = imageSelector.GetRandomSemantic();
-                string semantic2;
-                do
-                {
-                    semantic2 = imageSelector.GetRandomSemantic();
-                } while (semantic1 == semantic2);
+    //             string semantic1 = imageSelector.GetRandomSemantic();
+    //             string semantic2;
+    //             do
+    //             {
+    //                 semantic2 = imageSelector.GetRandomSemantic();
+    //             } while (semantic1 == semantic2);
 
-                sprites.Add(imageSelector.GetSpriteFromImageName(semantic1));
-                sprites.Add(imageSelector.GetSpriteFromImageName(semantic2));
+    //             sprites.Add(imageSelector.GetSpriteFromImageName(semantic1));
+    //             sprites.Add(imageSelector.GetSpriteFromImageName(semantic2));
                 
-                break;
+    //             break;
 
 
-            case ImagesType.Semantic:
-                string geometricName = imageSelector.GetRandomGeometric();
+    //         case ImagesType.Semantic:
+    //             string geometricName = imageSelector.GetRandomGeometric();
                 
-                string image1 = imageSelector.GetRandomSemanticFromGeometric(geometricName);
-                string image2;
-                do
-                {
-                    image2 = imageSelector.GetRandomSemanticFromGeometric(geometricName);
-                } while (image1 == image2);
+    //             string image1 = imageSelector.GetRandomSemanticFromGeometric(geometricName);
+    //             string image2;
+    //             do
+    //             {
+    //                 image2 = imageSelector.GetRandomSemanticFromGeometric(geometricName);
+    //             } while (image1 == image2);
 
-                sprites.Add(imageSelector.GetSpriteFromImageName(image1));
-                sprites.Add(imageSelector.GetSpriteFromImageName(image2));
+    //             sprites.Add(imageSelector.GetSpriteFromImageName(image1));
+    //             sprites.Add(imageSelector.GetSpriteFromImageName(image2));
 
-                break;
-        }
+    //             break;
+    //     }
 
-        return sprites.ToArray();
-    }
+    //     return sprites.ToArray();
+    // }
    
      public void SpawnImages(ImagesType imagesType){
         
@@ -261,7 +261,8 @@ public class ShapeSpawner : MonoBehaviour
         int indexToShift = Random.Range(1, itemsToSpawn);
 
 
-        Sprite [] sprites = GetSprites(imagesType);
+        // Sprite [] sprites = GetSprites(imagesType);
+        Sprite [] sprites = FindObjectOfType<Imager>().GetTwoRandomSprites(imagesType);
         Sprite normalSprite = sprites[0];
         Sprite shiftedSprite = sprites[1];
 
@@ -386,11 +387,19 @@ public class ShapeSpawner : MonoBehaviour
         }
     }
 
+    void CheckAndSetArrowChanges(){
+        float arrowChange = (float)gameHandler.levelData.spawnArrowsChance / 100f;
+        bool shouldSpawnArrows = Random.Range(0f, 1f) < arrowChange ? true : false;  
+        gameHandler.levelData.shapesType = shouldSpawnArrows ? ShapeType.Arrows : ShapeType.Images;
+        gameHandler.levelData.SetSpawningPrefab();
+    }
+
     public void Spawn(){
 
         GetItemsToSpawn();
         UpdateReactionTime();
         ChooseContent();
+        CheckAndSetArrowChanges();
 
 
         switch (gameHandler.levelData.shapesType)
