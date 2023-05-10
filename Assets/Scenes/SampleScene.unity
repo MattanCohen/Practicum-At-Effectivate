@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 41164098}
   - component: {fileID: 41164099}
   - component: {fileID: 41164100}
+  - component: {fileID: 41164101}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -578,7 +579,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f7c3f2661ff47409b65766ed549f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: 8c1e15817a1f02549b968b6edf1a37f8, type: 3}
+  jsonFile: {fileID: 4900000, guid: 23c4546c6610e914da6e2be830cab719, type: 3}
+--- !u!114 &41164101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41164095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bc0f0189d98f7438d468ab08c3969d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonFile: {fileID: 4900000, guid: 535283e08dd8b9148a7d9eeae27d0194, type: 3}
 --- !u!1 &58341723
 GameObject:
   m_ObjectHideFlags: 0
@@ -9305,7 +9319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1259794946
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13788,7 +13802,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1572477698}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13923,7 +13937,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1652498993}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17190,7 +17204,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1348503391}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

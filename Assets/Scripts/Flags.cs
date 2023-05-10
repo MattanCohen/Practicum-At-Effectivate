@@ -9,9 +9,9 @@ using System.Collections.Generic;
 [Serializable]
 public abstract class Spread
 {
-    public bool isLine;
-    public bool isColumn;
-    public bool isRandom;
+    public bool spawnLine;
+    public bool spawnColumn;
+    public bool spawnRandom;
 }
 
 [Serializable]
@@ -27,8 +27,8 @@ public abstract class Spread
 [Serializable]
 public abstract class Images
 {
-    public bool isGeometric;
-    public bool isSemantic;
+    public bool geometricImages;
+    public bool semanticImages;
 }
 
 [Serializable]
