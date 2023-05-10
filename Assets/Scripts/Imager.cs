@@ -62,12 +62,44 @@ public class Imager : MonoBehaviour {
         return sprites;
     }
 
+    public Sprite [] GetNumberSemanticsOneGeometric(int numToSpawn){
+        
+        // get two random geos
+        string geo1 = geometricSprites.Keys.ToArray()[Random.Range(0, geometricSprites.Keys.Count)];
+        string geo2 = "";
+        do
+        {
+            geo2 = geometricSprites.Keys.ToArray()[Random.Range(0, geometricSprites.Keys.Count)];
+        } while (geo1 == geo2);
+        
+        // shiftedSprite <- a different shape from different geometric value
+        Sprite shiftedSprite = geometricSprites[geo2][Random.Range(0, geometricSprites[geo2].ToArray().Length)];
+
+        // if want to spawn more than available return all possible sprites
+        Sprite [] sprites = geometricSprites[geo1];
+        if (sprites.Length < numToSpawn)
+             return sprites.Append(shiftedSprite).ToArray();
+
+
+        // else pick random sprites as numToSpawn
+        List<Sprite> spriteList = new List<Sprite>();
+        while (spriteList.Count < numToSpawn){
+            Sprite spriteToAdd = sprites[Random.Range(0, sprites.Length)];
+            if (!spriteList.Contains(spriteToAdd))
+                spriteList.Add(spriteToAdd);
+        }
+
+        // return sprites + geo
+        spriteList.Add(shiftedSprite);
+        return (spriteList).ToArray();
+    }
+
     public Sprite [] GetTwoRandomSprites(ShapeSpawner.ImagesType d){
         switch (d)
         {
             case ShapeSpawner.ImagesType.Geometric:
                 return GetTwoRandomGeometrics();
-            case ShapeSpawner.ImagesType.Semantic:
+            case ShapeSpawner.ImagesType.Geometric_Semantic:
                 return GetTwoRandomSemantics();
         }
 

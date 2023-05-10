@@ -60,6 +60,15 @@ public class GameGuard : MonoBehaviour
         levelsParent.transform.GetChild(0).gameObject.SetActive(true);
 
         gameHandler.ResetStats();
+        
+        var chosenContent = gameHandler.chosenContent;
+        if (!chosenContent) return;
+
+        foreach (Transform child in chosenContent.transform)
+        {
+            child.transform.GetChild(0).GetComponent<Shifter>().Kill();
+        }
+        
     }
 
     public void PreGame(){

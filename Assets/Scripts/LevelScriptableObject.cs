@@ -45,6 +45,7 @@ public class LevelScriptableObject : ScriptableObject {
         // imageFlags
     [HideInInspector] public bool geometricImages;
     [HideInInspector] public bool semanticImages;
+    [HideInInspector] public bool geometric_semanticImages;
 
 
     public void SetSpawningPrefab(){
@@ -74,6 +75,7 @@ public class LevelScriptableObject : ScriptableObject {
         // imageFlags
         geometricImages = imagesFlags.isGeometric;
         semanticImages = imagesFlags.isSemantic;
+        geometric_semanticImages = semanticImages && geometricImages;
     
         // shapesType;  -   find prefab from enum
         SetSpawningPrefab();

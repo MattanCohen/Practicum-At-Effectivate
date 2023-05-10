@@ -8,7 +8,8 @@ public class ShapeSpawner : MonoBehaviour
     public enum ImagesType
     {
         Geometric,
-        Semantic
+        Semantic,
+        Geometric_Semantic
     }
     GameHandler gameHandler;
     int itemsToSpawn;
@@ -254,15 +255,49 @@ public class ShapeSpawner : MonoBehaviour
 
     //     return sprites.ToArray();
     // }
+
+    void SpawnPureSemantic(){
+        Sprite [] sprites = FindObjectOfType<Imager>().GetNumberSemanticsOneGeometric(itemsToSpawn);
+        Sprite shiftedSprite = sprites[sprites.Length - 1];
+        
+        GameObject prefabToSpawn = gameHandler.levelData.spawningPrefab;
+        int indexToShift = Random.Range(1, sprites.Length - 1);
+        
+        for (int i = 0; i < sprites.Length - 1; i++){
+            // must have in every spawn loop
+            GameObject newShape = Instantiate(prefabToSpawn);
+            newShape.transform.SetParent(gameHandler.chosenContent.transform);
+            ImageShifter imageShifter = newShape.transform.GetChild(0).GetComponent<ImageShifter>();
+
+            // must have in every spawn loop
+            if (gameHandler.chosenContent == gameHandler.randomContent){
+                do {newShape.transform.GetChild(0).GetComponent<Shifter>().RandomPosition();}
+                while (TouchingOtherShape(newShape));
+            }
+            
+            
+            float scaleFactor = GetScaleFactor();
+            newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
+
+            if (i == indexToShift && gameHandler.shiftAShape)
+                imageShifter.ChooseSprite(shiftedSprite);
+            else
+                imageShifter.ChooseSprite(sprites[i]);
+
+        }
+    }
    
      public void SpawnImages(ImagesType imagesType){
+        if (imagesType == ImagesType.Semantic){
+            SpawnPureSemantic();
+            return;
+        }
         
         GameObject prefabToSpawn = gameHandler.levelData.spawningPrefab;
         int indexToShift = Random.Range(1, itemsToSpawn);
 
-
-        // Sprite [] sprites = GetSprites(imagesType);
         Sprite [] sprites = FindObjectOfType<Imager>().GetTwoRandomSprites(imagesType);
+
         Sprite normalSprite = sprites[0];
         Sprite shiftedSprite = sprites[1];
 
@@ -413,13 +448,13 @@ public class ShapeSpawner : MonoBehaviour
             //     break;
 
             case ShapeType.Images:
-                if (gameHandler.levelData.semanticImages && gameHandler.levelData.geometricImages)
+                if (gameHandler.levelData.geometric_semanticImages)
                 {
-                    SpawnImages(Random.Range(0f,1f) < 0.5f ? ImagesType.Semantic : ImagesType.Geometric);
+                    SpawnImages(ImagesType.Geometric_Semantic);
                 }
                 else if (gameHandler.levelData.semanticImages)
                 {
-                    SpawnImages(ImagesType.Semantic);
+                    SpawnImages(ImagesType.Semantic); 
                 }
                 else
                 {

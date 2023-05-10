@@ -155,10 +155,12 @@ public class GameHandler : MonoBehaviour {
     }
 
 
-    void DestroyShapes(){
+    public void DestroyShapes(){
+        if (!chosenContent) return;
+
         foreach (Transform child in chosenContent.transform)
         {
-            child.transform.GetChild(0).GetComponent<Shifter>().Dissapear();
+            child.transform.GetChild(0).GetComponent<Shifter>().Disappear();
         }
     }    
 

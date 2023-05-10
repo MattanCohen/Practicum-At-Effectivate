@@ -22,7 +22,7 @@ public abstract class Shifter : MonoBehaviour {
 
     public abstract void Shift();
     
-    public void Dissapear(){
+    public void Disappear(){
         GetComponent<Animator>().enabled = true;
         GetComponent<Animator>().SetBool("shouldDissapear", true);
     }
