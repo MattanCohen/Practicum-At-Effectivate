@@ -289,6 +289,7 @@ public class ShapeSpawner : MonoBehaviour
    
      public void SpawnImages(ImagesType imagesType){
         if (imagesType == ImagesType.Semantic){
+            Debug.Log("ISSA MEEEE");
             SpawnPureSemantic();
             return;
         }

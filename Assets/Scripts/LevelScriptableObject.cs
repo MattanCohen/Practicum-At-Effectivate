@@ -76,13 +76,9 @@ public class LevelScriptableObject : ScriptableObject {
             int.TryParse(match.Groups[1].Value, out levelNumber); // parse out to levelNumber the value of the num
         
         // imageFlags
-        if (imagesFlags != null)
-        {
-            geometricImages = imagesFlags.geometricImages;
-            semanticImages = imagesFlags.semanticImages;
-        }
+        geometricImages = imagesFlags.geometricImages;
+        semanticImages = imagesFlags.semanticImages;
         geometric_semanticImages = semanticImages && geometricImages;
-    
         // shapesType;  -   find prefab from enum
         SetSpawningPrefab();
 

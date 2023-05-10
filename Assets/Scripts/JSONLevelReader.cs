@@ -21,14 +21,14 @@ public class JSONLevelReader : MonoBehaviour
             // set level number
             newLevel.levelNumber = int.Parse(jsonLevel["levelNumber"].Value);  
             // set images flags
-            newLevel.imagesFlags.geometricImages = jsonLevel["geometricImages"].Value == "true";  
-            newLevel.imagesFlags.semanticImages = jsonLevel["semanticImages"].Value == "true";  
+            newLevel.imagesFlags.geometricImages = jsonLevel["geometricImages"].Value == "True";  
+            newLevel.imagesFlags.semanticImages = jsonLevel["semanticImages"].Value == "True";  
             // spawn arrows chance
             newLevel.spawnArrowsChance = (int)(float.Parse(jsonLevel["spawnArrowsChance"].Value) * 100);  
             // set spread flags
-            newLevel.spreadFlags.spawnLine = jsonLevel["spawnLine"].Value == "true";
-            newLevel.spreadFlags.spawnColumn = jsonLevel["spawnColumn"].Value == "true";
-            newLevel.spreadFlags.spawnRandom = jsonLevel["spawnRandom"].Value == "true";
+            newLevel.spreadFlags.spawnLine = jsonLevel["spawnLine"].Value == "True";
+            newLevel.spreadFlags.spawnColumn = jsonLevel["spawnColumn"].Value == "True";
+            newLevel.spreadFlags.spawnRandom = jsonLevel["spawnRandom"].Value == "True";
             // set items to spawn
             newLevel.itemsToSpawn.min = int.Parse(jsonLevel["minItemsToSpawn"].Value);
             newLevel.itemsToSpawn.max = int.Parse(jsonLevel["maxItemsToSpawn"].Value);
@@ -49,11 +49,11 @@ public class JSONLevelReader : MonoBehaviour
     {
         "levelNumber": 20,
         "geometricImages": false,
-        "semanticImages": true,
+        "semanticImages": True,
         "spawnArrowsChance": 0.1,
-        "spawnLine": true,
-        "spawnColumn": true,
-        "spawnRandom": true,
+        "spawnLine": True,
+        "spawnColumn": True,
+        "spawnRandom": True,
         "minItemsToSpawn": 11,
         "maxItemsToSpawn": 21,
         "minReactionTime": 5,
