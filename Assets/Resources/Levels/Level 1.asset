@@ -26,9 +26,10 @@ MonoBehaviour:
     min: 8
     max: 10
   switchButtonsChance: 0
-  shapesType: 2
+  spawnArrowsChance: 10
   levelNumber: 1
   probabilityToDifferentShape: 0.5
+  shapesType: 2
   spawningPrefab: {fileID: 3501462534896021290, guid: 9bf769e962af9e343aeea60ecb047f57, type: 3}
   minReactionTime: 10
   maxReactionTime: 10
@@ -39,3 +40,4 @@ MonoBehaviour:
   spawnRandom: 0
   geometricImages: 1
   semanticImages: 0
+  geometric_semanticImages: 0
