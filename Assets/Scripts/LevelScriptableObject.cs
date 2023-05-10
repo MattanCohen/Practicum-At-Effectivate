@@ -14,10 +14,10 @@ public enum ShapeType
 public class LevelScriptableObject : ScriptableObject {
 
 
-    public ImagesFlags imagesFlags;
-    public SpreadFlags spreadFlags;
-    public MinMax itemsToSpawn;
-    public MinMax reactionTime;
+    public ImagesFlags imagesFlags; // (semantic images or geometric images)
+    public SpreadFlags spreadFlags; // (spread in line, column or randomly )
+    public MinMax itemsToSpawn;     // (minimum and maximum items to spawn)
+    public MinMax reactionTime;     // (minimum and maximum reaction time )
     public int switchButtonsChance;
     public int spawnArrowsChance = 10;
 
@@ -37,6 +37,9 @@ public class LevelScriptableObject : ScriptableObject {
     // itemsToSpawn
     [HideInInspector] public int minItemsToSpawn;
     [HideInInspector] public int maxItemsToSpawn;
+    // min steps to switch
+    [HideInInspector] public int minStepsToSwitch;
+
     // inspectorFlags
         // spreadFlags
     [HideInInspector] public bool spawnLine;
@@ -73,17 +76,20 @@ public class LevelScriptableObject : ScriptableObject {
             int.TryParse(match.Groups[1].Value, out levelNumber); // parse out to levelNumber the value of the num
         
         // imageFlags
-        geometricImages = imagesFlags.isGeometric;
-        semanticImages = imagesFlags.isSemantic;
+        if (imagesFlags != null)
+        {
+            geometricImages = imagesFlags.geometricImages;
+            semanticImages = imagesFlags.semanticImages;
+        }
         geometric_semanticImages = semanticImages && geometricImages;
     
         // shapesType;  -   find prefab from enum
         SetSpawningPrefab();
 
         // spreadFlags
-        spawnColumn = spreadFlags.isColumn;
-        spawnLine = spreadFlags.isLine;
-        spawnRandom = spreadFlags.isRandom;
+        spawnColumn = spreadFlags.spawnColumn;
+        spawnLine = spreadFlags.spawnLine;
+        spawnRandom = spreadFlags.spawnRandom;
         
         // itemsToSpawn
         minItemsToSpawn = itemsToSpawn.min;
