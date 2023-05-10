@@ -13,7 +13,7 @@ public enum Difficulty
 public class Imager : MonoBehaviour {
     string FOLDERS = "folders";    
     string FOLDER_NAME = "folder-name";    
-    string COLORS = "colors";
+    // string COLORS = "colors";
 
     [SerializeField] TextAsset jsonFile;
     Dictionary<string, Sprite[]> geometricSprites;
