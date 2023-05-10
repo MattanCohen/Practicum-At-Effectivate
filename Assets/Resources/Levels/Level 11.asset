@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd530ecb441509842b73444149f4c95f, type: 3}
+  m_Name: Level 11
+  m_EditorClassIdentifier: 
+  imagesFlags:
+    isGeometric: 1
+    isSemantic: 1
+  spreadFlags:
+    isLine: 1
+    isColumn: 1
+    isRandom: 0
+  itemsToSpawn:
+    min: 5
+    max: 9
+  reactionTime:
+    min: 5
+    max: 8
+  switchButtonsChance: 50
+  shapesType: 0
+  levelNumber: 5
+  probabilityToDifferentShape: 0.5
+  spawningPrefab: {fileID: 5825892840952995862, guid: 9a50ccfb2e34da1448985e3baf176eef, type: 3}
+  minReactionTime: 5
+  maxReactionTime: 8
+  minItemsToSpawn: 5
+  maxItemsToSpawn: 9
+  spawnLine: 1
+  spawnColumn: 0
+  spawnRandom: 0
+  geometricImages: 0
+  semanticImages: 0

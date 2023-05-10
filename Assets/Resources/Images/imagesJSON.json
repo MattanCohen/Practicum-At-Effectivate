@@ -1,0 +1,28 @@
+{
+    "folders":[
+        {
+            "folder-name" : "Balls"
+        },
+        {
+            "folder-name" : "Bats"
+        },
+        {
+            "folder-name" : "Boards"
+        },
+        {
+            "folder-name" : "Fields"
+        },
+        {
+            "folder-name" : "Gloves"
+        },
+        {
+            "folder-name" : "Goggles"
+        },
+        {
+            "folder-name" : "Helmets"
+        },
+        {
+            "folder-name" : "Weights"
+        }
+    ]
+}
