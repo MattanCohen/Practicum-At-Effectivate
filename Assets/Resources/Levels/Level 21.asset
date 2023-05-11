@@ -25,22 +25,20 @@ MonoBehaviour:
   reactionTime:
     min: 3
     max: 10
-  switchButtonsChance: 20
+  switchButtonsChance: 50
   spawnArrowsChance: 1
-  maxSwitchButtonsChance: 75
-  maxMinStepsToSwitch: 4
-  levelNumber: 5
+  minStepsToSwitch: 2
+  levelNumber: 21
   probabilityToDifferentShape: 0.5
   shapesType: 0
-  spawningPrefab: {fileID: 5825892840952995862, guid: 9a50ccfb2e34da1448985e3baf176eef, type: 3}
-  minReactionTime: 5
-  maxReactionTime: 8
+  spawningPrefab: {fileID: 3501462534896021290, guid: 9bf769e962af9e343aeea60ecb047f57, type: 3}
+  minReactionTime: 3
+  maxReactionTime: 10
   minItemsToSpawn: 5
-  maxItemsToSpawn: 9
-  minStepsToSwitch: 0
+  maxItemsToSpawn: 21
   spawnLine: 1
-  spawnColumn: 0
-  spawnRandom: 0
-  geometricImages: 0
-  semanticImages: 0
-  geometric_semanticImages: 0
+  spawnColumn: 1
+  spawnRandom: 1
+  geometricImages: 1
+  semanticImages: 1
+  geometric_semanticImages: 1

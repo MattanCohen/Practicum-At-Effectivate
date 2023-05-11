@@ -9,6 +9,7 @@ public class GameUiHandler : MonoBehaviour {
     public GameObject duringGameUI;
     public GameObject postGameUI;
     public GameObject nextLevelButton;
+    public GameObject continueLevelButton;
     public GameObject pauseMenuButton;
     public TMP_Text muteButtonText;
     public TMP_Text preGameLevelText;
@@ -154,10 +155,19 @@ public class GameUiHandler : MonoBehaviour {
     }
 
     public void NextLevel(){
+        if (gameHandler.isPlayingForever)
+        {
+            continueLevelButton.SetActive(true);
+            gameHandler.ContinueGame();
+            gameGuard.DuringGame();
+        }
+        else{
+            continueLevelButton.SetActive(false);
+            gameHandler.StartGame();
+            gameGuard.PreGame();
+        }
         nextLevelButton.SetActive(false);
-        FixUi();
-        gameHandler.StartGame();
-        gameGuard.PreGame();
+        // FixUi();
     }
 
     public void StartGame(){
@@ -173,12 +183,16 @@ public class GameUiHandler : MonoBehaviour {
         FixUi();
         
         if (LoadLevelNum(gameHandler.levelData.levelNumber + 1)){
+            gameHandler.isPlayingForever = false;
             nextLevelButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "לשלב הבא";
-            // nextLevelButton.SetActive(true);
+            nextLevelButton.SetActive(true);
+            continueLevelButton.SetActive(false);
         }
         else{
+            gameHandler.isPlayingForever = true;
             nextLevelButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "המשך שלב";
-            // nextLevelButton.SetActive(false);
+            nextLevelButton.SetActive(false);
+            continueLevelButton.SetActive(true);
         }
 
 

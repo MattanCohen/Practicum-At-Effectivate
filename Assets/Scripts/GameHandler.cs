@@ -17,6 +17,7 @@ public class GameHandler : MonoBehaviour {
     
 
     [HideInInspector] public bool isPlaying;
+    [HideInInspector] public bool isPlayingForever = false;
     [HideInInspector] public bool gameFinished{get; private set;}
 
     [HideInInspector] public bool shiftAShape{get; private set;}
@@ -51,6 +52,7 @@ public class GameHandler : MonoBehaviour {
     
 
 
+    // public bool FinishedGame(){return !isPlayingForever && FindObjectOfType<TimerScript>().GetTotalTimeInMinutes() > minutesForEachLevel;} 
     public bool FinishedGame(){return FindObjectOfType<TimerScript>().GetTotalTimeInMinutes() > minutesForEachLevel;} 
 
 
@@ -80,6 +82,15 @@ public class GameHandler : MonoBehaviour {
         gameUiHandler.StartGame();
 
         ResetMovesIndicators();
+    }
+
+    public void ContinueGame(){
+
+        // reactionTime = levelData.maxReactionTime;
+
+        gameUiHandler.StartGame();
+        StartStage();
+        // ResetMovesIndicators();
     }
     
     public void ResetMovesIndicators(){
