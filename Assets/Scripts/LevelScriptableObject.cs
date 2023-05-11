@@ -20,9 +20,10 @@ public class LevelScriptableObject : ScriptableObject {
     public MinMax reactionTime;     // (minimum and maximum reaction time )
     public int switchButtonsChance;
     public int spawnArrowsChance = 10;
+    public int minStepsToSwitch;
 
-    public int maxSwitchButtonsChance;
-    public int maxMinStepsToSwitch;
+    // public int maxSwitchButtonsChance;
+    // public int maxMinStepsToSwitch;
 
 
     // levelNumber    
@@ -41,7 +42,6 @@ public class LevelScriptableObject : ScriptableObject {
     [HideInInspector] public int minItemsToSpawn;
     [HideInInspector] public int maxItemsToSpawn;
     // min steps to switch
-    [HideInInspector] public int minStepsToSwitch;
 
     // inspectorFlags
         // spreadFlags
