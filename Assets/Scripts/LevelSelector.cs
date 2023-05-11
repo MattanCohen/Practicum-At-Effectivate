@@ -58,6 +58,7 @@ public class LevelSelector : MonoBehaviour
         var color = GetComponent<Image>().color;
         color.a = 255f/255f;
         GetComponent<Image>().color = color;
+        FindObjectOfType<SoundManager>().PlayButtonSoundEffect();
 
     }
 

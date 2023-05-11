@@ -9,9 +9,11 @@ public class MoveHandler : MonoBehaviour
 
     TMP_Text rightButtonText;
     TMP_Text leftButtonText;
+    string same = "דומה";
+    string different = "שונה";
 
-    string same;
-    string different;
+    string lastLeft;
+    string lastRight;
     bool shouldSwitchButtons;
     GameHandler gameHandler;
    
@@ -19,26 +21,35 @@ public class MoveHandler : MonoBehaviour
         rightButtonText = rightButton.GetComponentInChildren<TMP_Text>();
         leftButtonText = leftButton.GetComponentInChildren<TMP_Text>();
         gameHandler = FindObjectOfType<GameHandler>();
+        leftButtonText.text = same;
+        rightButtonText.text = different;
     }
 
     public void UpdateControls(){
-        same = "דומה";
-        different = "שונה";
+        lastLeft = leftButtonText.text;
+        lastRight = rightButtonText.text;
 
+        bool canChange = gameHandler.stepsSinceChange >= gameHandler.levelData.minStepsToSwitch ? true : false;
         float switchChange = (float)gameHandler.levelData.switchButtonsChance / 100f;
-        shouldSwitchButtons = Random.Range(0f, 1f) < switchChange ? true : false;        
+        shouldSwitchButtons = Random.Range(0f, 1f) < switchChange && canChange ? true : false;   
+ 
         Debug.Log("handler chance: " + gameHandler.levelData.switchButtonsChance.ToString());
         Debug.Log("chance: " + switchChange.ToString() + " shouldSwitch? " + shouldSwitchButtons);
         
         if (shouldSwitchButtons)
         {
-            leftButtonText.text = different;
-            rightButtonText.text = same;
+            leftButtonText.text = lastLeft == same ? different : same;
+            rightButtonText.text = lastRight == same ? different : same;
+            gameHandler.stepsSinceChange = 0;
+            // leftButtonText.text = different;
+            // rightButtonText.text = same;
         }
         else
         {
-            leftButtonText.text = same;
-            rightButtonText.text = different;
+         
+            gameHandler.stepsSinceChange ++;
+            // leftButtonText.text = same;
+            // rightButtonText.text = different;
         }
     }
 
@@ -72,18 +83,22 @@ public class MoveHandler : MonoBehaviour
 
     public void ClickRightButton(){
         
-        // shouldSwitchButtons  =>  right button same
-        if (shouldSwitchButtons)
-            PlayMove(true);
-        else
-            PlayMove(false);
+        PlayMove(rightButtonText.text == same);
+        
+        // // shouldSwitchButtons  =>  right button same
+        // if (shouldSwitchButtons)
+        //     PlayMove(true);
+        // else
+        //     PlayMove(false);
     }
     public void ClickLeftButton(){
 
-        // shouldSwitchButtons  =>  left button different
-        if (shouldSwitchButtons)
-            PlayMove(false);
-        else
-            PlayMove(true);
+        PlayMove(leftButtonText.text == same);
+
+        // // shouldSwitchButtons  =>  left button different
+        // if (shouldSwitchButtons)
+        //     PlayMove(false);
+        // else
+        //     PlayMove(true);
     }
 }

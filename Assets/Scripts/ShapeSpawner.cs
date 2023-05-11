@@ -19,7 +19,7 @@ public class ShapeSpawner : MonoBehaviour
     float levelDuration;
     // float scaleFactor;
     
-    float GetScaleFactor(){
+    float GetScaleFactor(int numberToSpawn){
         bool isImage = gameHandler.levelData.shapesType == ShapeType.Images;
         // return isImage ? image_scale : arrow_scale;
         // end of test
@@ -35,7 +35,7 @@ public class ShapeSpawner : MonoBehaviour
             VerticalLayoutGroup verticalLayoutGroup = gameHandler.chosenContent.GetComponent<VerticalLayoutGroup>();
             if (!isImage){
                 // TODO
-                switch (itemsToSpawn)
+                switch (numberToSpawn)
                 {
                 case (<= 11):
                     scaleFactor = 1f;
@@ -53,19 +53,23 @@ public class ShapeSpawner : MonoBehaviour
                 verticalLayoutGroup.spacing = spacing;
             }
             else{
-                switch (itemsToSpawn)
+                switch (numberToSpawn)
                 {
+                    case (< 9):
+                        scaleFactor = 1.8f;
+                        spacing = 80f;
+                        break;
                     case (< 13):
-                        scaleFactor = 2f;
-                        spacing = 50f;
+                        scaleFactor = 1.7f;
+                        spacing = 60f;
                         break;
                     case (<= 17):
                         scaleFactor = 1.2f;
-                        spacing = 0f;
+                        spacing = 20f;
                         break;
                     default:
-                        scaleFactor = 1f;
-                        spacing = -20f;
+                        scaleFactor = 0.8f;
+                        spacing = -30f;
                         break;
                 }
                 verticalLayoutGroup.spacing = spacing;
@@ -75,7 +79,7 @@ public class ShapeSpawner : MonoBehaviour
             HorizontalLayoutGroup horizontalLayoutGroup = gameHandler.chosenContent.GetComponent<HorizontalLayoutGroup>();
     
             if (!isImage) {
-                switch (itemsToSpawn)
+                switch (numberToSpawn)
                 {
                     case (<=11):
                         scaleFactor = 1.5f;
@@ -92,7 +96,7 @@ public class ShapeSpawner : MonoBehaviour
                 }
             }
             else{
-                switch (itemsToSpawn)
+                switch (numberToSpawn)
                 {
                     case (<13):
                         scaleFactor = 2f;
@@ -147,7 +151,7 @@ public class ShapeSpawner : MonoBehaviour
     void SpawnArrows(){
         GameObject prefabToSpawn = gameHandler.levelData.spawningPrefab;
         
-        var scaleFactor = GetScaleFactor();
+        var scaleFactor = GetScaleFactor(itemsToSpawn);
         var scaleX = Random.Range(0f, 1f) > 0.5 ? 1 : -1;
         var scale = new Vector3(scaleX * scaleFactor, scaleFactor , scaleFactor);
 
@@ -181,35 +185,35 @@ public class ShapeSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnLetters(){
-        GameObject prefabToSpawn = gameHandler.levelData.spawningPrefab;
-        int randomVariation = Random.Range(0, gameHandler.levelData.spawningPrefab.transform.GetChild(0) .GetComponent<SemanticShifter>().variations.Length);
-        int indexToShift = Random.Range(1, itemsToSpawn);
+    // public void SpawnLetters(){
+    //     GameObject prefabToSpawn = gameHandler.levelData.spawningPrefab;
+    //     int randomVariation = Random.Range(0, gameHandler.levelData.spawningPrefab.transform.GetChild(0) .GetComponent<SemanticShifter>().variations.Length);
+    //     int indexToShift = Random.Range(1, itemsToSpawn);
 
-        for (int i = 0; i < itemsToSpawn; i++){
-            // must have in every spawn loop
-            GameObject newShape = Instantiate(prefabToSpawn);
-            newShape.transform.SetParent(gameHandler.chosenContent.transform);
+    //     for (int i = 0; i < itemsToSpawn; i++){
+    //         // must have in every spawn loop
+    //         GameObject newShape = Instantiate(prefabToSpawn);
+    //         newShape.transform.SetParent(gameHandler.chosenContent.transform);
 
 
                 
-            // must have in every spawn loop
-            if (gameHandler.chosenContent == gameHandler.randomContent){
-                while (TouchingOtherShape(newShape));
-            }
+    //         // must have in every spawn loop
+    //         if (gameHandler.chosenContent == gameHandler.randomContent){
+    //             while (TouchingOtherShape(newShape));
+    //         }
 
-            float scaleFactor = GetScaleFactor();
-            newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
+    //         float scaleFactor = GetScaleFactor();
+    //         newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
 
-            newShape.transform.GetChild(0).GetComponent<SemanticShifter>().SetVariation(randomVariation);
+    //         newShape.transform.GetChild(0).GetComponent<SemanticShifter>().SetVariation(randomVariation);
 
-            // must have in every spawn loop
-            if (i == indexToShift){
-                if (gameHandler.shiftAShape)
-                    newShape.transform.GetChild(0).GetComponent<Shifter>().Shift();
-            }
-        }
-    }
+    //         // must have in every spawn loop
+    //         if (i == indexToShift){
+    //             if (gameHandler.shiftAShape)
+    //                 newShape.transform.GetChild(0).GetComponent<Shifter>().Shift();
+    //         }
+    //     }
+    // }
 
     // Sprite [] GetSprites(ImagesType imagesType){
     //     // return FindObjectOfType<Imager>().GetTwoRandomSprites(imagesType);
@@ -276,7 +280,7 @@ public class ShapeSpawner : MonoBehaviour
             }
             
             
-            float scaleFactor = GetScaleFactor();
+            float scaleFactor = GetScaleFactor(sprites.Length - 1);
             newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
 
             if (i == indexToShift && gameHandler.shiftAShape)
@@ -289,7 +293,6 @@ public class ShapeSpawner : MonoBehaviour
    
      public void SpawnImages(ImagesType imagesType){
         if (imagesType == ImagesType.Semantic){
-            Debug.Log("ISSA MEEEE");
             SpawnPureSemantic();
             return;
         }
@@ -315,7 +318,7 @@ public class ShapeSpawner : MonoBehaviour
             }
             
             
-            float scaleFactor = GetScaleFactor();
+            float scaleFactor = GetScaleFactor(itemsToSpawn);
             newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
 
             if (i == indexToShift && gameHandler.shiftAShape)

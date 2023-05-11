@@ -149,7 +149,7 @@
      "minReactionTime": 5,
      "maxReactionTime": 8,
      "switchButtonsChance": 0.2,
-     "minStepsToSwitch": 4
+     "minStepsToSwitch": 1
     },
     {
      "levelNumber": 11,

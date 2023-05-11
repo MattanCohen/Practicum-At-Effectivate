@@ -24,6 +24,7 @@ public class GameHandler : MonoBehaviour {
     [HideInInspector] public bool previousMoveWasRight{get; private set;}
     [HideInInspector] public bool madeAtleastOneMistake{get; private set;}
     [HideInInspector] public bool threeLastMovesWereRight{get; private set;}
+    [HideInInspector] public int stepsSinceChange;
     [HideInInspector] public float reactionTime;   
     public float minutesForEachLevel;
 
@@ -34,6 +35,7 @@ public class GameHandler : MonoBehaviour {
         score = 0;
         isPlaying = false;
         shiftAShape = false;
+        stepsSinceChange = 0;
     }
 
 
