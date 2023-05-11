@@ -285,21 +285,6 @@
      "maxReactionTime": 8,
      "switchButtonsChance": 0.4,
      "minStepsToSwitch": 1
-    },
-    {
-     "levelNumber": 20,
-     "geometricImages": false,
-     "semanticImages": true,
-     "spawnArrowsChance": 0.1,
-     "spawnLine": true,
-     "spawnColumn": true,
-     "spawnRandom": true,
-     "minItemsToSpawn": 11,
-     "maxItemsToSpawn": 21,
-     "minReactionTime": 5,
-     "maxReactionTime": 8,
-     "switchButtonsChance": 0.5,
-     "minStepsToSwitch": 1
     }
    ]
 

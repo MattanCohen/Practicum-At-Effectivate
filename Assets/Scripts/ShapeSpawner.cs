@@ -433,12 +433,25 @@ public class ShapeSpawner : MonoBehaviour
         gameHandler.levelData.SetSpawningPrefab();
     }
 
+    void CheckForInfinite(){
+        if (!gameHandler.isPlayingForever) return;
+    
+        bool [] picks = {false, false, false};
+        picks[Random.Range(0, picks.Length)] = true;
+        
+        gameHandler.levelData.geometric_semanticImages  = picks[0];
+        gameHandler.levelData.geometricImages           = picks[1];
+        gameHandler.levelData.semanticImages            = picks[2];
+
+    }
+
     public void Spawn(){
 
         GetItemsToSpawn();
         UpdateReactionTime();
         ChooseContent();
         CheckAndSetArrowChanges();
+        CheckForInfinite();
 
 
         switch (gameHandler.levelData.shapesType)

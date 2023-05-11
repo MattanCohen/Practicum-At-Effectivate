@@ -62,6 +62,9 @@ public class GameHandler : MonoBehaviour {
             return;
         }
 
+        if (isPlayingForever)   minutesForEachLevel = 0.7f;
+        else                    minutesForEachLevel = 1.5f;
+
         
 
         shiftAShape = Random.Range(0, 1f) < levelData.probabilityToDifferentShape;

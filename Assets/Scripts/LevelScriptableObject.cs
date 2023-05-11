@@ -22,8 +22,8 @@ public class LevelScriptableObject : ScriptableObject {
     public int spawnArrowsChance = 10;
     public int minStepsToSwitch;
 
-    // public int maxSwitchButtonsChance;
-    // public int maxMinStepsToSwitch;
+    public MinMax infiniteSwitchChance;
+    public MinMax infiniteStepsToSwitch;
 
 
     // levelNumber    
