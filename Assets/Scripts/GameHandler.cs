@@ -66,6 +66,8 @@ public class GameHandler : MonoBehaviour {
 
         shapeSpawner.Spawn();
 
+        FindObjectOfType<MoveHandler>().Spawn();
+
 
         isPlaying = true;
         gameUiHandler.FixUi();

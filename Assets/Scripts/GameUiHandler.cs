@@ -104,7 +104,7 @@ public class GameUiHandler : MonoBehaviour {
     {
         LevelScriptableObject level = Resources.Load<LevelScriptableObject>(string.Format("Levels/Level {0}", n));
         if (level == null){
-            Debug.Log("game gui handler failed to load level");
+            Debug.Log("game gui handler failed to load level, stay on the same level");
             return false;
         }
         Debug.Log(string.Format("Game gui handler succesfuly loaded level number {0}", level.levelNumber));
@@ -172,10 +172,14 @@ public class GameUiHandler : MonoBehaviour {
         
         FixUi();
         
-        if (LoadLevelNum(gameHandler.levelData.levelNumber + 1))
-            nextLevelButton.SetActive(true);
-        else
-            nextLevelButton.SetActive(false);
+        if (LoadLevelNum(gameHandler.levelData.levelNumber + 1)){
+            nextLevelButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "לשלב הבא";
+            // nextLevelButton.SetActive(true);
+        }
+        else{
+            nextLevelButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "המשך שלב";
+            // nextLevelButton.SetActive(false);
+        }
 
 
         gameGuard.PostGame();

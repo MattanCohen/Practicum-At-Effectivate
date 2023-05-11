@@ -12,9 +12,10 @@ public class MoveHandler : MonoBehaviour
     string same = "דומה";
     string different = "שונה";
 
+    bool shouldSwitchButtons;
+
     string lastLeft;
     string lastRight;
-    bool shouldSwitchButtons;
     GameHandler gameHandler;
    
     private void Awake() {
@@ -25,32 +26,35 @@ public class MoveHandler : MonoBehaviour
         rightButtonText.text = different;
     }
 
+    public void Spawn(){
+        if (shouldSwitchButtons)
+        {
+            leftButtonText.text = lastLeft == same ? different : same;
+            rightButtonText.text = lastRight == same ? different : same;
+            gameHandler.stepsSinceChange = 0;
+        }
+        else
+        {
+            gameHandler.stepsSinceChange ++;
+        }
+        
+        // bool madeAtleastOneMistake      = gameHandler.madeAtleastOneMistake;
+        // bool lastMoveWasRight           = gameHandler.lastMoveWasRight;
+        // bool threeLastMovesWereRight    = gameHandler.threeLastMovesWereRight;
+    }
+
     public void UpdateControls(){
         lastLeft = leftButtonText.text;
         lastRight = rightButtonText.text;
 
-        bool canChange = gameHandler.stepsSinceChange >= gameHandler.levelData.minStepsToSwitch ? true : false;
+        bool canChange =   gameHandler.stepsSinceChange >= gameHandler.levelData.minStepsToSwitch;
         float switchChange = (float)gameHandler.levelData.switchButtonsChance / 100f;
         shouldSwitchButtons = Random.Range(0f, 1f) < switchChange && canChange ? true : false;   
  
         Debug.Log("handler chance: " + gameHandler.levelData.switchButtonsChance.ToString());
         Debug.Log("chance: " + switchChange.ToString() + " shouldSwitch? " + shouldSwitchButtons);
         
-        if (shouldSwitchButtons)
-        {
-            leftButtonText.text = lastLeft == same ? different : same;
-            rightButtonText.text = lastRight == same ? different : same;
-            gameHandler.stepsSinceChange = 0;
-            // leftButtonText.text = different;
-            // rightButtonText.text = same;
-        }
-        else
-        {
-         
-            gameHandler.stepsSinceChange ++;
-            // leftButtonText.text = same;
-            // rightButtonText.text = different;
-        }
+        
     }
 
 
@@ -82,23 +86,9 @@ public class MoveHandler : MonoBehaviour
     }
 
     public void ClickRightButton(){
-        
         PlayMove(rightButtonText.text == same);
-        
-        // // shouldSwitchButtons  =>  right button same
-        // if (shouldSwitchButtons)
-        //     PlayMove(true);
-        // else
-        //     PlayMove(false);
     }
     public void ClickLeftButton(){
-
         PlayMove(leftButtonText.text == same);
-
-        // // shouldSwitchButtons  =>  left button different
-        // if (shouldSwitchButtons)
-        //     PlayMove(false);
-        // else
-        //     PlayMove(true);
     }
 }
