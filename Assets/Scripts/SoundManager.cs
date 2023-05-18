@@ -9,8 +9,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip buttonClip;
     [SerializeField] AudioClip correctAnswerClip;
     [SerializeField] AudioClip wrongAnswerClip;
-    [SerializeField] AudioClip switchButtonsClip;
-    
     AudioSource mySource;
     // Start is called before the first frame update
     void Start()
@@ -39,9 +37,6 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayWrongAnswerEffect(){
         PlayEffect(wrongAnswerClip);        
-    }
-    public void PlaySwitchEffect(){
-        PlayEffect(switchButtonsClip);        
     }
 
 }
