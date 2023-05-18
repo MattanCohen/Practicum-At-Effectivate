@@ -526,7 +526,8 @@ MonoBehaviour:
   isPlayingForever: 0
   stepsSinceChange: 0
   reactionTime: 0
-  minutesForEachLevel: 1.5
+  minutesForNormalLevel: 1
+  minutesForInfiniteLevel: 1
 --- !u!4 &41164097
 Transform:
   m_ObjectHideFlags: 0
@@ -2597,6 +2598,7 @@ MonoBehaviour:
   buttonClip: {fileID: 8300000, guid: aa074afb4d7fbf148a862757ef6af90f, type: 3}
   correctAnswerClip: {fileID: 8300000, guid: e271b3a7dad07d74a9b01011d9c243e4, type: 3}
   wrongAnswerClip: {fileID: 8300000, guid: f45c3e61b0d906d4082b898e96085d23, type: 3}
+  switchButtonsClip: {fileID: 8300000, guid: 0d0804683a1f9ec4b9371dd6a1239564, type: 3}
 --- !u!82 &349554469
 AudioSource:
   m_ObjectHideFlags: 0

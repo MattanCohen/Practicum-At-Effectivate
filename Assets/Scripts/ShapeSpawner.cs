@@ -271,11 +271,13 @@ public class ShapeSpawner : MonoBehaviour
             // must have in every spawn loop
             GameObject newShape = Instantiate(prefabToSpawn);
             newShape.transform.SetParent(gameHandler.chosenContent.transform);
-            ImageShifter imageShifter = newShape.transform.GetChild(0).GetComponent<ImageShifter>();
+            // ImageShifter imageShifter = newShape.transform.GetChild(0).GetComponent<ImageShifter>();
+            ImageShifter imageShifter = newShape.GetComponentInChildren<ImageShifter>();
 
             // must have in every spawn loop
             if (gameHandler.chosenContent == gameHandler.randomContent){
-                do {newShape.transform.GetChild(0).GetComponent<Shifter>().RandomPosition();}
+                // do {newShape.transform.GetChild(0).GetComponent<Shifter>().RandomPosition();}
+                do {imageShifter.RandomPosition();}
                 while (TouchingOtherShape(newShape));
             }
             
@@ -284,9 +286,9 @@ public class ShapeSpawner : MonoBehaviour
             newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
 
             if (i == indexToShift && gameHandler.shiftAShape)
-                imageShifter.ChooseSprite(shiftedSprite);
+                imageShifter.ChooseSprite(shiftedSprite, true);
             else
-                imageShifter.ChooseSprite(sprites[i]);
+                imageShifter.ChooseSprite(sprites[i], false);
 
         }
     }
@@ -309,11 +311,13 @@ public class ShapeSpawner : MonoBehaviour
             // must have in every spawn loop
             GameObject newShape = Instantiate(prefabToSpawn);
             newShape.transform.SetParent(gameHandler.chosenContent.transform);
-            ImageShifter imageShifter = newShape.transform.GetChild(0).GetComponent<ImageShifter>();
+            // ImageShifter imageShifter = newShape.transform.GetChild(0).GetComponent<ImageShifter>();
+            ImageShifter imageShifter = newShape.GetComponentInChildren<ImageShifter>();
 
             // must have in every spawn loop
             if (gameHandler.chosenContent == gameHandler.randomContent){
-                do {newShape.transform.GetChild(0).GetComponent<Shifter>().RandomPosition();}
+                // do {newShape.transform.GetChild(0).GetComponent<Shifter>().RandomPosition();}
+                do {imageShifter.RandomPosition();}
                 while (TouchingOtherShape(newShape));
             }
             
@@ -322,9 +326,9 @@ public class ShapeSpawner : MonoBehaviour
             newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
 
             if (i == indexToShift && gameHandler.shiftAShape)
-                imageShifter.ChooseSprite(shiftedSprite);
+                imageShifter.ChooseSprite(shiftedSprite, true);
             else
-                imageShifter.ChooseSprite(normalSprite);
+                imageShifter.ChooseSprite(normalSprite, false);
 
         }
     }

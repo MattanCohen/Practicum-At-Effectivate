@@ -38,6 +38,7 @@ public class MoveHandler : MonoBehaviour
             leftButtonText.text = lastLeft == same ? different : same;
             rightButtonText.text = lastRight == same ? different : same;
             gameHandler.stepsSinceChange = 0;
+            FindObjectOfType<SoundManager>().PlaySwitchEffect();
         }
         else
         {

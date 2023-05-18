@@ -89,6 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5499eba053f5d44cb32190ed0a9de24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerGameObject: {fileID: 359947347893778509, guid: 774521d0b76d6a64590081460ee40dd8, type: 3}
+  isShifted: 0
+  wrongColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!222 &8881936943368467292
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ public class LevelScriptableObject : ScriptableObject {
 
     public MinMax infiniteSwitchChance;
     public MinMax infiniteStepsToSwitch;
+    public bool isForever;
 
 
     // levelNumber    

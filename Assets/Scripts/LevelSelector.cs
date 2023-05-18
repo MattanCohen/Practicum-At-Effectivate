@@ -51,9 +51,6 @@ public class LevelSelector : MonoBehaviour
         selected = true;
         
         GameObject.FindObjectOfType<GameHandler>().SetLevelData(levelData);
-        if (levelData.levelNumber == 420){
-            GameObject.FindObjectOfType<GameHandler>().minutesForEachLevel = 99999f;
-        }
         
         var color = GetComponent<Image>().color;
         color.a = 255f/255f;
