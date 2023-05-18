@@ -10,6 +10,7 @@ public class ArrowShifter : Shifter {
         var scale = transform.parent.localScale;
         scale.x *= -1;
         transform.parent.localScale = scale;
+        isShifted = true;
     }
     
     

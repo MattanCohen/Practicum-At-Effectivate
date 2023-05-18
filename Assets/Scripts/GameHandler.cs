@@ -27,7 +27,8 @@ public class GameHandler : MonoBehaviour {
     [HideInInspector] public bool threeLastMovesWereRight{get; private set;}
     [HideInInspector] public int stepsSinceChange;
     [HideInInspector] public float reactionTime;   
-    public float minutesForEachLevel;
+    public float minutesForNormalLevel;
+    public float minutesForInfiniteLevel;
 
     ShapeSpawner shapeSpawner;
 
@@ -52,8 +53,13 @@ public class GameHandler : MonoBehaviour {
     
 
 
-    // public bool FinishedGame(){return !isPlayingForever && FindObjectOfType<TimerScript>().GetTotalTimeInMinutes() > minutesForEachLevel;} 
-    public bool FinishedGame(){return FindObjectOfType<TimerScript>().GetTotalTimeInMinutes() > minutesForEachLevel;} 
+    // public bool FinishedGame(){return !isPlayingForever && FindObjectOfType<TimerScript>().GetTotalTimeInMinutes() > minutesForNormalLevel;} 
+    public bool FinishedGame(){
+        var timePassedInMinutes = FindObjectOfType<TimerScript>().GetTotalTimeInMinutes();
+        var minutesLimit = levelData.isForever ? minutesForInfiniteLevel : minutesForNormalLevel;
+
+        return timePassedInMinutes >  minutesLimit; 
+    } 
 
 
     public void StartStage(){
@@ -62,8 +68,8 @@ public class GameHandler : MonoBehaviour {
             return;
         }
 
-        if (isPlayingForever)   minutesForEachLevel = 0.7f;
-        else                    minutesForEachLevel = 1.5f;
+        isPlayingForever = levelData.isForever;
+
 
         
 
@@ -134,6 +140,7 @@ public class GameHandler : MonoBehaviour {
         
 
         isPlaying = false;
+        UpdateMovesIndicators(true);
         DestroyShapes();
 
         yield return new WaitForSeconds(2);
@@ -146,7 +153,6 @@ public class GameHandler : MonoBehaviour {
             yield return new WaitForSeconds(0.1f);
         }
 
-        UpdateMovesIndicators(true);
         StartStage();
     }
 
@@ -156,20 +162,35 @@ public class GameHandler : MonoBehaviour {
         gameUiHandler.LoseStage();
 
         isPlaying = false;
+        UpdateMovesIndicators(false);
         DestroyShapes();
 
         yield return new WaitForSeconds(2);
 
         stageNum++;
-
+ 
         GameGuard gameGuard = FindObjectOfType<GameGuard>();
         
         while (gameGuard.paused){
             yield return new WaitForSeconds(0.1f);
         }
 
-        UpdateMovesIndicators(false);
         StartStage();
+    }
+
+    public static GameObject GetChildWithName(Transform trans, string name) {
+    Transform childTrans = trans. Find(name);
+    if (childTrans != null) {
+        return childTrans.gameObject;
+    } else {
+        foreach (Transform t in trans)
+        {
+            var ans = GetChildWithName(t, name);
+            if (ans != null)
+                return ans;
+        }
+        return null;
+    }
     }
 
 
@@ -178,7 +199,7 @@ public class GameHandler : MonoBehaviour {
 
         foreach (Transform child in chosenContent.transform)
         {
-            child.transform.GetChild(0).GetComponent<Shifter>().Disappear();
+            GetChildWithName(child, "shape").GetComponent<Shifter>().Disappear();
         }
     }    
 
