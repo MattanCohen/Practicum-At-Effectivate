@@ -14,7 +14,7 @@ public class ShapeSpawner : MonoBehaviour
     GameHandler gameHandler;
     int itemsToSpawn;
     int spawnningIndex;
-    
+    // I am the main after breakdown
     float spawnStart;
     float levelDuration;
     // float scaleFactor;
