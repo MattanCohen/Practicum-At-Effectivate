@@ -28,6 +28,7 @@ public class GameHandler : MonoBehaviour {
     [HideInInspector] public int stepsSinceChange;
     [HideInInspector] public float reactionTime;   
     public float minutesForEachLevel;
+    public float minutesForInfiniteLevel;
 
     ShapeSpawner shapeSpawner;
 
