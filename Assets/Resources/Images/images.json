@@ -1,28 +1,13 @@
 {
     "folders":[
         {
-            "folder-name" : "Balls"
+            "folder-name" : "Animals"
         },
         {
-            "folder-name" : "Bats"
+            "folder-name" : "Clothing"
         },
         {
-            "folder-name" : "Boards"
-        },
-        {
-            "folder-name" : "Fields"
-        },
-        {
-            "folder-name" : "Gloves"
-        },
-        {
-            "folder-name" : "Goggles"
-        },
-        {
-            "folder-name" : "Helmets"
-        },
-        {
-            "folder-name" : "Weights"
+            "folder-name" : "Sports"
         }
     ]
 }

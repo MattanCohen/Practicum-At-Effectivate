@@ -25,9 +25,9 @@ MonoBehaviour:
   reactionTime:
     min: 3
     max: 10
-  switchButtonsChance: 20
+  switchButtonsChance: 25
   spawnArrowsChance: 10
-  minStepsToSwitch: 4
+  minStepsToSwitch: 1
   infiniteSwitchChance:
     min: 20
     max: 75
@@ -37,11 +37,11 @@ MonoBehaviour:
   isForever: 1
   levelNumber: 20
   probabilityToDifferentShape: 0.5
-  shapesType: 1
-  spawningPrefab: {fileID: 5825892840952995862, guid: 9a50ccfb2e34da1448985e3baf176eef, type: 3}
-  minReactionTime: 5
-  maxReactionTime: 8
-  minItemsToSpawn: 11
+  shapesType: 0
+  spawningPrefab: {fileID: 3501462534896021290, guid: 9bf769e962af9e343aeea60ecb047f57, type: 3}
+  minReactionTime: 3
+  maxReactionTime: 10
+  minItemsToSpawn: 21
   maxItemsToSpawn: 21
   spawnLine: 1
   spawnColumn: 1
