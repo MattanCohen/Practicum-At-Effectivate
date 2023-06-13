@@ -8,6 +8,15 @@
         },
         {
             "folder-name" : "Sports"
+        },
+        {
+            "folder-name" : "Fruits"
+        },
+        {
+            "folder-name" : "Vegtables"
+        },
+        {
+            "folder-name" : "Music"
         }
     ]
 }

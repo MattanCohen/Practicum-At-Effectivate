@@ -109,6 +109,7 @@ public class TimerScript : MonoBehaviour {
                     : "00";
     }
 
+    string GetTimeSinceStart(){return FixFloatDecimal(TotalTime);}
     // ---------------------------
 
 }
