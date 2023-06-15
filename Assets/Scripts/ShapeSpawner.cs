@@ -13,12 +13,17 @@ public class ShapeSpawner : MonoBehaviour
     }
     GameHandler gameHandler;
     int itemsToSpawn;
+    int columnMaxItemsToSpawn = 11;
+    int lineMaxItemsToSpawn = 13;
     int spawnningIndex;
     
     float spawnStart;
     float levelDuration;
     // float scaleFactor;
     
+
+
+
     float GetScaleFactor(int numberToSpawn){
         bool isImage = gameHandler.levelData.shapesType == ShapeType.Images;
         // return isImage ? image_scale : arrow_scale;
@@ -405,9 +410,9 @@ public class ShapeSpawner : MonoBehaviour
         List<string> whatToSpawn = new List<string>();
 
         
-        if (gameHandler.levelData.spawnColumn)
+        if (itemsToSpawn <= columnMaxItemsToSpawn && gameHandler.levelData.spawnColumn)
             whatToSpawn.Add("column");
-        if (gameHandler.levelData.spawnLine)
+        if (itemsToSpawn <= lineMaxItemsToSpawn && gameHandler.levelData.spawnLine)
             whatToSpawn.Add("line");
         if (gameHandler.levelData.spawnRandom)
             whatToSpawn.Add("random");
