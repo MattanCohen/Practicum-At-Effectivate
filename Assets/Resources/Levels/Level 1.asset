@@ -13,31 +13,39 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   imagesFlags:
-    isGeometric: 1
-    isSemantic: 0
+    geometricImages: 0
+    semanticImages: 0
   spreadFlags:
-    isLine: 1
-    isColumn: 0
-    isRandom: 0
+    spawnLine: 1
+    spawnColumn: 0
+    spawnRandom: 0
   itemsToSpawn:
     min: 5
-    max: 7
+    max: 9
   reactionTime:
     min: 8
     max: 10
   switchButtonsChance: 0
-  spawnArrowsChance: 10
+  spawnArrowsChance: 100
+  minStepsToSwitch: 0
+  infiniteSwitchChance:
+    min: 0
+    max: 0
+  infiniteStepsToSwitch:
+    min: 0
+    max: 0
+  isForever: 0
   levelNumber: 1
   probabilityToDifferentShape: 0.5
-  shapesType: 2
+  shapesType: 0
   spawningPrefab: {fileID: 3501462534896021290, guid: 9bf769e962af9e343aeea60ecb047f57, type: 3}
-  minReactionTime: 10
+  minReactionTime: 8
   maxReactionTime: 10
-  minItemsToSpawn: 5
-  maxItemsToSpawn: 9
-  spawnLine: 1
-  spawnColumn: 0
+  minItemsToSpawn: 21
+  maxItemsToSpawn: 21
+  spawnLine: 0
+  spawnColumn: 1
   spawnRandom: 0
-  geometricImages: 1
-  semanticImages: 0
+  geometricImages: 0
+  semanticImages: 1
   geometric_semanticImages: 0
