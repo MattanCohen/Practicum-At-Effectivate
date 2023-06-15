@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour {
     // --------- Timer ---------
@@ -10,7 +10,6 @@ public class TimerScript : MonoBehaviour {
         
             using System;
             using UnityEngine.UI;
-            using TMPro;
 
           on the top of the file in order for the timer to work.
 
@@ -21,7 +20,7 @@ public class TimerScript : MonoBehaviour {
     3 -: your timer text can't be a normal UI->Text, it has to be UI->TextMeshPro
 
     */
-    [SerializeField] private TMP_Text timeText; 
+    [SerializeField] private Text timeText; 
     private float TotalTime = 0.0f;
     private float TimeStarted = 0.0f; 
     // public bool game_started = false;

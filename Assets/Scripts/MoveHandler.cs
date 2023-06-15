@@ -1,16 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-using TMPro;
 
 public class MoveHandler : MonoBehaviour
 {
     [SerializeField] GameObject leftButton;
     [SerializeField] GameObject rightButton;
 
-    TMP_Text rightButtonText;
-    TMP_Text leftButtonText;
-    string same = "דומה";
-    string different = "שונה";
+    Text rightButtonText;
+    Text leftButtonText;
+    string same = "המוד";
+    string different = "הנוש";
 
     bool shouldSwitchButtons;
 
@@ -23,8 +23,8 @@ public class MoveHandler : MonoBehaviour
             
    
     private void Awake() {
-        rightButtonText = rightButton.GetComponentInChildren<TMP_Text>();
-        leftButtonText = leftButton.GetComponentInChildren<TMP_Text>();
+        rightButtonText = rightButton.GetComponentInChildren<Text>();
+        leftButtonText = leftButton.GetComponentInChildren<Text>();
         gameHandler = FindObjectOfType<GameHandler>();
         leftButtonText.text = same;
         rightButtonText.text = different;

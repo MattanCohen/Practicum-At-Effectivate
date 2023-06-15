@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class LevelSelector : MonoBehaviour
             break;
         }
         
-        TMP_Text button_name = transform.GetChild(0).GetComponent<TMP_Text>();
+        Text button_name = transform.GetChild(0).GetComponent<Text>();
         if (!levelData){
             button_name.text = "X";
             return;

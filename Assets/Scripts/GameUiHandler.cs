@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
-using TMPro;
 
 [RequireComponent(typeof(PostGameStats))]
 [RequireComponent(typeof(MoveHandler))]
@@ -11,15 +10,15 @@ public class GameUiHandler : MonoBehaviour {
     public GameObject nextLevelButton;
     public GameObject continueLevelButton;
     public GameObject pauseMenuButton;
-    public TMP_Text muteButtonText;
-    public TMP_Text preGameLevelText;
+    public Text muteButtonText;
+    public Text preGameLevelText;
     public Slider duringGameReactionSlider;
-    public TMP_Text duringGameStageCounterText;
-    public TMP_Text duringGameScoreCounterText;
-    public TMP_Text postGameScoreCounterText;
-    public TMP_Text postGameLevelText;
-    public TMP_Text averageReactionTimeText;
-    public TMP_Text successRateText;
+    public Text duringGameStageCounterText;
+    public Text duringGameScoreCounterText;
+    public Text postGameScoreCounterText;
+    public Text postGameLevelText;
+    public Text averageReactionTimeText;
+    public Text successRateText;
     float lastReactionTimeSet;
     GameHandler gameHandler;
     GameGuard gameGuard;
@@ -64,9 +63,9 @@ public class GameUiHandler : MonoBehaviour {
 
         string newTextForMuteButton;
         if (FindObjectOfType<SoundManager>().muted)
-            newTextForMuteButton = "צלילים כבויים";
+            newTextForMuteButton = "םייובכ םילילצ";
         else
-            newTextForMuteButton = "צלילים פועלים";
+            newTextForMuteButton = "םילעופ םילילצ";
 
         muteButtonText.text = newTextForMuteButton;
     }
@@ -184,13 +183,13 @@ public class GameUiHandler : MonoBehaviour {
         
         if (LoadLevelNum(gameHandler.levelData.levelNumber + 1)){
             gameHandler.isPlayingForever = false;
-            nextLevelButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "לשלב הבא";
+            nextLevelButton.transform.GetChild(0).GetComponent<Text>().text = "אבה בלשל";
             nextLevelButton.SetActive(true);
             continueLevelButton.SetActive(false);
         }
         else{
             gameHandler.isPlayingForever = true;
-            nextLevelButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "המשך שלב";
+            nextLevelButton.transform.GetChild(0).GetComponent<Text>().text = "בלש ךשמה";
             nextLevelButton.SetActive(false);
             continueLevelButton.SetActive(true);
         }

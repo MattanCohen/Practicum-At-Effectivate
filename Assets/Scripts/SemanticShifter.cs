@@ -1,8 +1,8 @@
 using UnityEngine;
-using TMPro;
-// Hi
+using UnityEngine.UI;
+
 public class SemanticShifter : Shifter {
-    [SerializeField] TMP_Text shapeText;
+    [SerializeField] Text shapeText;
     public string [] variations;
     string [] usingLetters;
 
