@@ -18,4 +18,6 @@ public class Ints
      public void OnBeforeSerialize(){}
      
      public void OnAfterDeserialize(){}
- }
+    
+    public MinMax(int _min, int _max){min = _min; max = _max;}
+ }  
