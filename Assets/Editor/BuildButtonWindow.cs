@@ -5,7 +5,7 @@ public class BuildButtonWindow : EditorWindow
 {
     private static BuildTarget previousPlatform;
 
-    [MenuItem("Build/Build for PC and Android")]
+    [MenuItem("Build/Build for PC or Android")]
     private static void BuildForPCAndAndroidMenuItem()
     {
         BuildOptionsWindow window = EditorWindow.GetWindow<BuildOptionsWindow>("Build Options");
@@ -99,7 +99,7 @@ public class BuildButtonWindow : EditorWindow
     {
         string gameName = PlayerSettings.productName;
         string version = PlayerSettings.bundleVersion;
-        string androidBuildPath = $"Builds/Android/{gameName} {version}.apk";
+        string androidBuildPath = $"Builds/Android/{gameName}.apk";
 
          BuildPlayerOptions androidBuildOptions = new BuildPlayerOptions();
         androidBuildOptions.scenes = EditorBuildSettingsScene.GetActiveSceneList(EditorBuildSettings.scenes);
