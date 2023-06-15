@@ -79,7 +79,8 @@ public class TimerScript : MonoBehaviour {
             return;
         TotalTime += Time.realtimeSinceStartup - TimeStarted;
         SetTimeStarted();
-        timeText.text = FixFloatDecimal(TotalTime);
+        // timeText.text = GetTimeSinceStart();
+        timeText.text = GetTimeRemaining();
     }
 
     
@@ -95,8 +96,8 @@ public class TimerScript : MonoBehaviour {
         string ans = "";
         // ans += SetStringForTimer(hours) + ":"; 
         ans += SetStringForTimer(mins) + ":"; 
-        ans += SetStringForTimer(secs) + "."; 
-        ans += "<size=80%>" + SetStringForTimer(decs);  // makes the decimal to be smaller
+        ans += SetStringForTimer(secs); 
+        // ans += "." + "<size=80%>" + SetStringForTimer(decs);  // makes the decimal to be smaller
         return ans;
     }
 
@@ -109,7 +110,16 @@ public class TimerScript : MonoBehaviour {
                     : "00";
     }
 
-    string GetTimeSinceStart(){return FixFloatDecimal(TotalTime);}
+    string GetTimeSinceStart() => FixFloatDecimal(TotalTime);
     // ---------------------------
+    
+    
+    // project specific functions
+    string GetTimeRemaining(){
+        GameHandler gameHandler = FindObjectOfType<GameHandler>();
+        float maxAllowedMinutetsInSeconds = (float)TimeSpan.FromMinutes(gameHandler.GetMaxMinutesAllowed()).TotalSeconds;
+        return FixFloatDecimal(maxAllowedMinutetsInSeconds - TotalTime);
+    }
+    
 
 }

@@ -219,4 +219,7 @@ public class GameHandler : MonoBehaviour {
         ResetStats();
         Debug.Log(string.Format("Game Handler: level {0} loaded ", levelData.levelNumber));
     }
+
+    public float GetMaxMinutesAllowed() => isPlayingForever ? minutesForInfiniteLevel : minutesForNormalLevel;
+
 }
