@@ -354,20 +354,16 @@ public class ShapeSpawner : MonoBehaviour
             return;
         }
 
-        bool lastMoveWasRight = gameHandler.lastMoveWasRight;
-        bool previousMoveWasRight = gameHandler.previousMoveWasRight;
+        bool lastMoveWasWrong = gameHandler.rightMoves == 0;
+        bool twoLastMovesRight = gameHandler.rightMoves >= 2;
         
-        itemsToSpawn += !lastMoveWasRight 
+        itemsToSpawn += lastMoveWasWrong 
                             ? -2 
-                            : previousMoveWasRight 
+                            : twoLastMovesRight 
                                 ? +2 
                                 : 0;
 
-        itemsToSpawn = itemsToSpawn > maxSpawn 
-                        ? maxSpawn 
-                        : itemsToSpawn < minSpawn 
-                            ? minSpawn 
-                            : itemsToSpawn; 
+        itemsToSpawn = Mathf.Clamp(itemsToSpawn, minSpawn, maxSpawn); 
         
         Debug.Log("spawning " + itemsToSpawn + " items.");
         
@@ -375,14 +371,14 @@ public class ShapeSpawner : MonoBehaviour
 
     void UpdateReactionTime(){
         bool madeAtleastOneMistake      = gameHandler.madeAtleastOneMistake;
-        bool lastMoveWasRight           = gameHandler.lastMoveWasRight;
-        bool threeLastMovesWereRight    = gameHandler.threeLastMovesWereRight;
+        bool lastMoveWasWrong           = gameHandler.rightMoves == 0;
+        bool threeLastMovesWereRight    = gameHandler.rightMoves >= 3;
 
         float multiplier = 1f;
 
         if (madeAtleastOneMistake)
         {
-            if (!lastMoveWasRight)
+            if (lastMoveWasWrong)
                 // made atleast one mistake and last move was wrong         : up by 5%
                 multiplier = 1.05f; 
             else if (threeLastMovesWereRight)
@@ -391,7 +387,7 @@ public class ShapeSpawner : MonoBehaviour
         }
         else
         {
-            if (lastMoveWasRight)
+            if (!lastMoveWasWrong)
                 // didn't make any mistakes and last move was right         : down by 5% 
                 multiplier = 0.95f;
         }

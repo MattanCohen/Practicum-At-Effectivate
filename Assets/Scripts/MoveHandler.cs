@@ -45,9 +45,6 @@ public class MoveHandler : MonoBehaviour
             gameHandler.stepsSinceChange ++;
         }
         
-        // bool madeAtleastOneMistake      = gameHandler.madeAtleastOneMistake;
-        // bool lastMoveWasRight           = gameHandler.lastMoveWasRight;
-        // bool threeLastMovesWereRight    = gameHandler.threeLastMovesWereRight;
     }
 
     void CheckForInfinitePlaying(){
@@ -60,8 +57,8 @@ public class MoveHandler : MonoBehaviour
         MinMax switchChance = gameHandler.levelData.infiniteSwitchChance;
         MinMax stepsToSwitch = gameHandler.levelData.infiniteStepsToSwitch;
 
-        bool lastMoveWasRight           = gameHandler.lastMoveWasRight;
-        bool threeLastMovesWereRight    = gameHandler.threeLastMovesWereRight;
+        bool lastMoveWasRight           = gameHandler.rightMoves >= 1;
+        bool threeLastMovesWereRight    = gameHandler.rightMoves >= 3;
 
         if (rand){
             gameHandler.levelData.switchButtonsChance = Random.Range(switchChance.min, switchChance.max);

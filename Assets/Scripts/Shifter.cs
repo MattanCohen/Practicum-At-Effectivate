@@ -30,7 +30,7 @@ public abstract class Shifter : MonoBehaviour {
     public abstract void Shift();
     
     public void Disappear(){
-        bool lastMoveWasWrong = !FindObjectOfType<GameHandler>().lastMoveWasRight;
+        bool lastMoveWasWrong = FindObjectOfType<GameHandler>().rightMoves == 0;
         // bool madeAtleastOneMistake = FindObjectOfType<GameHandler>().madeAtleastOneMistake;
         // Debug.Log(string.Format( "HIIIIIIIIIIIIIIIII is shifted = {0} and is last wrong = {1}",isShifted , lastMoveWasWrong));
         if (isShifted && lastMoveWasWrong/* && madeAtleastOneMistake*/){

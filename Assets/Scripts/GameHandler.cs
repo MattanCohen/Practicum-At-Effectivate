@@ -21,10 +21,8 @@ public class GameHandler : MonoBehaviour {
     [HideInInspector] public bool gameFinished{get; private set;}
 
     [HideInInspector] public bool shiftAShape{get; private set;}
-    [HideInInspector] public bool lastMoveWasRight{get; private set;}
-    [HideInInspector] public bool previousMoveWasRight{get; private set;}
+    [HideInInspector] public int  rightMoves{get; private set;}
     [HideInInspector] public bool madeAtleastOneMistake{get; private set;}
-    [HideInInspector] public bool threeLastMovesWereRight{get; private set;}
     [HideInInspector] public int stepsSinceChange;
     [HideInInspector] public float reactionTime;   
     public float minutesForNormalLevel;
@@ -116,32 +114,13 @@ public class GameHandler : MonoBehaviour {
     }
     
     public void ResetMovesIndicators(){
-        previousMoveWasRight = false;
-        lastMoveWasRight = false;
+        rightMoves = 0;
         madeAtleastOneMistake = false;
-        threeLastMovesWereRight = false;
     }
     
     void UpdateMovesIndicators(bool isLastMoveRight){
-        /*
-            before assigning new values this is the state of the variables:
-                isLastMoveRight      := last move was right
-                lastMoveWasRight     := previous move was right
-                previousMoveWasRight := 2 moves ago was right
-        */
-        if (isLastMoveRight && lastMoveWasRight && previousMoveWasRight)
-            threeLastMovesWereRight = true;
-        else
-            threeLastMovesWereRight = false;
-
-        // update variables to contain real data
-        previousMoveWasRight = lastMoveWasRight;
-        lastMoveWasRight = isLastMoveRight;
-
-        // in case that is the first mistake
-        if (!isLastMoveRight)
-            madeAtleastOneMistake = true;
-        
+        rightMoves = isLastMoveRight ? rightMoves++ : 0;
+        if (!isLastMoveRight) madeAtleastOneMistake = true;
     }
 
 
