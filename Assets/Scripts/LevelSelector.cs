@@ -19,7 +19,7 @@ public class LevelSelector : MonoBehaviour
         
         Text button_name = transform.GetChild(0).GetComponent<Text>();
         if (!levelData){
-            button_name.text = "X";
+            button_name.text = "Y";
             return;
         }
 
