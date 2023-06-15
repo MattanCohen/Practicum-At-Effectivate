@@ -291,14 +291,28 @@ public class ShapeSpawner : MonoBehaviour
             newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
 
             if (i == indexToShift && gameHandler.shiftAShape)
-                imageShifter.ChooseSprite(shiftedSprite, true);
+                imageShifter.ChooseSprite(colorfulValue, shiftedSprite, true);
             else
-                imageShifter.ChooseSprite(sprites[i], false);
+                imageShifter.ChooseSprite(colorfulValue, sprites[i], false);
 
         }
     }
    
+    public float colorfulValue;
+    void UpdateColorful(){
+        MinMax colorfulValenLim = new MinMax(0, 100);
+        
+        bool twoLastMovesWereRight = gameHandler.rightMoves >= 2;
+        bool lastMoveWasWrong       = gameHandler.rightMoves == 0;
+        colorfulValue = twoLastMovesWereRight ? (colorfulValue * 0.82f) 
+                        : lastMoveWasWrong      ? (colorfulValue + 10f)
+                        : /* else */              (colorfulValue);
+    
+        colorfulValue = Mathf.Clamp(colorfulValue, colorfulValenLim.min, colorfulValenLim.max);
+    }
+
      public void SpawnImages(ImagesType imagesType){
+        
         if (imagesType == ImagesType.Semantic){
             SpawnPureSemantic();
             return;
@@ -319,6 +333,7 @@ public class ShapeSpawner : MonoBehaviour
             // ImageShifter imageShifter = newShape.transform.GetChild(0).GetComponent<ImageShifter>();
             ImageShifter imageShifter = newShape.GetComponentInChildren<ImageShifter>();
 
+
             // must have in every spawn loop
             if (gameHandler.chosenContent == gameHandler.randomContent){
                 // do {newShape.transform.GetChild(0).GetComponent<Shifter>().RandomPosition();}
@@ -326,14 +341,13 @@ public class ShapeSpawner : MonoBehaviour
                 while (TouchingOtherShape(newShape));
             }
             
-            
             float scaleFactor = GetScaleFactor(itemsToSpawn);
             newShape.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
 
             if (i == indexToShift && gameHandler.shiftAShape)
-                imageShifter.ChooseSprite(shiftedSprite, true);
+                imageShifter.ChooseSprite(colorfulValue, shiftedSprite, true);
             else
-                imageShifter.ChooseSprite(normalSprite, false);
+                imageShifter.ChooseSprite(colorfulValue, normalSprite, false);
 
         }
     }
@@ -457,6 +471,7 @@ public class ShapeSpawner : MonoBehaviour
         ChooseContent();
         CheckAndSetArrowChanges();
         CheckForInfinite();
+        UpdateColorful();
 
 
         switch (gameHandler.levelData.shapesType)

@@ -95,6 +95,8 @@ public class GameHandler : MonoBehaviour {
         gameUiHandler.FixUi();
     }
     
+    public void ResetColorfulValue(){FindObjectOfType<ShapeSpawner>().colorfulValue = 100f;}
+
     public void StartGame(){
 
         reactionTime = levelData.maxReactionTime;
@@ -102,6 +104,8 @@ public class GameHandler : MonoBehaviour {
         gameUiHandler.StartGame();
 
         ResetMovesIndicators();
+
+        ResetColorfulValue();
     }
 
     public void ContinueGame(){
@@ -119,7 +123,7 @@ public class GameHandler : MonoBehaviour {
     }
     
     void UpdateMovesIndicators(bool isLastMoveRight){
-        rightMoves = isLastMoveRight ? rightMoves++ : 0;
+        rightMoves = isLastMoveRight ? rightMoves + 1 : 0;
         if (!isLastMoveRight) madeAtleastOneMistake = true;
     }
 

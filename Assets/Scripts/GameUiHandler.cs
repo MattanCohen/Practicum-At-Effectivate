@@ -198,7 +198,10 @@ public class GameUiHandler : MonoBehaviour {
 
         gameGuard.PostGame();
     }
+        
+
     public void ResetGame(){
+        gameHandler.ResetColorfulValue();
         LoadLevelNum(levelNum);
         NextLevel();
     }

@@ -31,39 +31,20 @@ public abstract class Shifter : MonoBehaviour {
     
     public void Disappear(){
         bool lastMoveWasWrong = FindObjectOfType<GameHandler>().rightMoves == 0;
-        // bool madeAtleastOneMistake = FindObjectOfType<GameHandler>().madeAtleastOneMistake;
-        // Debug.Log(string.Format( "HIIIIIIIIIIIIIIIII is shifted = {0} and is last wrong = {1}",isShifted , lastMoveWasWrong));
-        if (isShifted && lastMoveWasWrong/* && madeAtleastOneMistake*/){
-            // setup to recover containers
-            var containerBackground = GameHandler.GetChildWithName(transform.parent, "background");
+        if (isShifted && lastMoveWasWrong){
             var marker = GameHandler.GetChildWithName(transform.parent, "Marker(Clone)");
-            if (containerBackground != null){
-                Debug.Log("changing container background");
-                containerBackground.GetComponent<Image>().color = wrongColor;
-            }
-            // currently noj container background is provided so the 'else' section will never run \/
-            else if (marker != null){
+            if (marker != null){
                 Debug.Log("showing marker");
 
                 marker.transform.SetSiblingIndex(0);
                 marker.transform.gameObject.SetActive(true);
-                // transform.parent.GetChild(1).SetSiblingIndex(0);
-                // transform.parent.GetChild(0).gameObject.SetActive(true);
             }
-            else
-            Debug.Log("have no marker and no container");
-
+            else Debug.Log("have no marker");
         }
 
-        var container = GameHandler.GetChildWithName(transform.parent, "container");
-        if (container == null){
-            GetComponent<Animator>().enabled = true;
-            GetComponent<Animator>().SetBool("shouldDissapear", true);
-            return;
-        }
-
-        container.GetComponent<Animator>().enabled = true;
-        container.GetComponent<Animator>().SetBool("shouldDissapear", true);
+        GetComponent<Animator>().enabled = true;
+        GetComponent<Animator>().SetBool("shouldDissapear", true);
+        return;
     }
     public void Kill(){
         Destroy(transform.parent.gameObject);
