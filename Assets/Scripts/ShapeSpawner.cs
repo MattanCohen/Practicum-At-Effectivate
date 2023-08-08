@@ -302,6 +302,7 @@ public class ShapeSpawner : MonoBehaviour
     void UpdateColorful(){
         MinMax colorfulValenLim = new MinMax(0, 100);
         
+
         bool twoLastMovesWereRight = gameHandler.rightMoves >= 2;
         bool lastMoveWasWrong       = gameHandler.rightMoves == 0;
         colorfulValue = twoLastMovesWereRight ? (colorfulValue * 0.82f) 
@@ -360,8 +361,22 @@ public class ShapeSpawner : MonoBehaviour
 
         bool lessThanTwoMoves = gameHandler.stageNum < 2;
 
-        var maxSpawn = gameHandler.levelData.maxItemsToSpawn;
+        // get min items to spawn
         var minSpawn = gameHandler.levelData.minItemsToSpawn;
+        
+        // get max items to spawn.
+        var maxSpawn = gameHandler.levelData.maxItemsToSpawn;
+        // if spawning vertical, max is 11
+        if (gameHandler.chosenContent == gameHandler.columnContent){
+            Debug.Log("spawning in a column - max is 11");
+            maxSpawn = 11;
+        }
+        // if spawning vertical, max is 13
+        if (gameHandler.chosenContent == gameHandler.rowContent){
+            Debug.Log("spawning in a row - max is 13");
+            maxSpawn = 13;
+        }
+            
 
         if (lessThanTwoMoves){
             itemsToSpawn = minSpawn;
