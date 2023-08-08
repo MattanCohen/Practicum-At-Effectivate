@@ -21,7 +21,11 @@ public class ShapeSpawner : MonoBehaviour
     float levelDuration;
     // float scaleFactor;
     
+    [Header("Black and White Feature")]
+    [Tooltip("If checked - will apply black and white effect to the images on good answers. Else - all images will be colorful (no b&w filter)")]
+    [SerializeField] bool shouldApplyBlackAndWhite = true;
 
+    [HideInInspector] public float colorfulValue;
 
 
     float GetScaleFactor(int numberToSpawn){
@@ -297,11 +301,14 @@ public class ShapeSpawner : MonoBehaviour
 
         }
     }
-   
-    public float colorfulValue;
+    
     void UpdateColorful(){
         MinMax colorfulValenLim = new MinMax(0, 100);
-        
+
+        if (!shouldApplyBlackAndWhite){
+            colorfulValue = colorfulValenLim.max;
+            return; 
+        }
 
         bool twoLastMovesWereRight = gameHandler.rightMoves >= 2;
         bool lastMoveWasWrong       = gameHandler.rightMoves == 0;
