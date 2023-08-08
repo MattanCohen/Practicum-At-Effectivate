@@ -19,6 +19,9 @@ public class GameUiHandler : MonoBehaviour {
     public Text postGameLevelText;
     public Text averageReactionTimeText;
     public Text successRateText;
+    public GameObject infiniteLevelText;
+    public GameObject preLevel6Text;
+    public GameObject postLevel6Text;
     float lastReactionTimeSet;
     GameHandler gameHandler;
     GameGuard gameGuard;
@@ -37,8 +40,27 @@ public class GameUiHandler : MonoBehaviour {
         postGameScoreCounterText.text = string.Format("{0}", gameHandler.score);
     }
     public void UpdateLevelText(){
+        // UpdatePreGameLevelText
         preGameLevelText.text = string.Format("{0}", gameHandler.levelData.levelNumber);
+        
+        // UpdatePostGameLevelText
         postGameLevelText.text = string.Format("{0}", gameHandler.levelData.levelNumber);
+    
+        // UpdateTutorialText
+        if (gameHandler.levelData.isForever){
+            infiniteLevelText.SetActive(true);
+
+            preLevel6Text.SetActive(false);
+            postLevel6Text.SetActive(false);
+        }
+        else{
+            infiniteLevelText.SetActive(false);
+            
+            preLevel6Text.SetActive(gameHandler.levelData.levelNumber < 6);
+
+            postLevel6Text.SetActive(gameHandler.levelData.levelNumber >= 6);
+        }
+
     }
     public void UpdateAverageReactionTimeText(){
         float ans = GetComponent<PostGameStats>().GetAverageReactionTime();
