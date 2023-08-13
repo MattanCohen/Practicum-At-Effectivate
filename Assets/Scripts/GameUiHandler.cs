@@ -229,7 +229,7 @@ public class GameUiHandler : MonoBehaviour {
 
     public void MainMenu(){
         nextLevelButton.SetActive(false);
-        gameGuard.MainMenu();
+        gameGuard?.MainMenu();
     }
 
     public void PressMuteButton(){
