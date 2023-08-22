@@ -306,7 +306,6 @@ public class ShapeSpawner : MonoBehaviour
         MinMax colorfulValenLim = new MinMax(0, 100);
 
         bool shouldApplyBlackAndWhite = gameHandler.levelData.levelNumber >= levelToStartBlackAndWhite;
-        Debug.Log(shouldApplyBlackAndWhite);
 
         if (!shouldApplyBlackAndWhite){
             colorfulValue = colorfulValenLim.max;
