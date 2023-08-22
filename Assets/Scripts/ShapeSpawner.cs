@@ -22,8 +22,8 @@ public class ShapeSpawner : MonoBehaviour
     // float scaleFactor;
     
     [Header("Black and White Feature")]
-    [Tooltip("If checked - will apply black and white effect to the images on good answers. Else - all images will be colorful (no b&w filter)")]
-    [SerializeField] bool shouldApplyBlackAndWhite = true;
+    [Tooltip("Will apply black and white effect to the images on levels higher than this param. On lower number levels, all images will be colorful (no b&w filter)")]
+    [SerializeField] int levelToStartBlackAndWhite = 15;
 
     [HideInInspector] public float colorfulValue;
 
@@ -304,6 +304,9 @@ public class ShapeSpawner : MonoBehaviour
     
     void UpdateColorful(){
         MinMax colorfulValenLim = new MinMax(0, 100);
+
+        bool shouldApplyBlackAndWhite = gameHandler.levelData.levelNumber >= levelToStartBlackAndWhite;
+        Debug.Log(shouldApplyBlackAndWhite);
 
         if (!shouldApplyBlackAndWhite){
             colorfulValue = colorfulValenLim.max;
